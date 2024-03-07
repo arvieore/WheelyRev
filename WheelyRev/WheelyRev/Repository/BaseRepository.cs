@@ -39,7 +39,6 @@ namespace WheelyRev.Repository
                 return ErrorCode.Error;
             }
         }
-
         public ErrorCode Delete(object id)
         {
             try

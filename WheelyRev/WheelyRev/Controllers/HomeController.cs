@@ -45,5 +45,28 @@ namespace WheelyRev.Controllers
             FormsAuthentication.SignOut(); //Para mawagtang ang authentication nga gikan ni login.
             return RedirectToAction("Login");
         }
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Register(Users u)
+        {
+            _table.Create(u);
+            setDefaultRole(u.userId);
+            TempData["msg"] = $"Register successfully!";
+            return View();
+        }
+        public void setDefaultRole(int id)
+        {
+            UserRoles Default_Role = new UserRoles
+            {
+                roleId = 3, //Default role 3 = Customer
+                userId = id
+            };
+            _tableUR.Create(Default_Role);
+        }
     }
 }

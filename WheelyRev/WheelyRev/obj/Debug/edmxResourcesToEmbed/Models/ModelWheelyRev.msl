@@ -42,5 +42,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_DefaultRole" FunctionName="WheelyRevModel.Store.sp_DefaultRole" />
   </EntityContainerMapping>
 </Mapping>

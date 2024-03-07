@@ -1,0 +1,81 @@
+﻿@model WheelyRev.Models.Users
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+
+@if (!String.IsNullOrEmpty(TempData["msg"] as String))
+{
+    <div class="alert alert-success">@TempData["msg"] </div>
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Users</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <label>Username</label><br />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username", @required = true } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <label>Password</label><br />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @required = true, @type = "password" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <label>Fistname</label><br />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.firstname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Firstname", @required = true } })
+                @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <label>Lastname</label><br />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "form-control", @placeholder = "Lastname", @required = true } })
+                @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <label>Email</label><br />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email", @required = true } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <label>Age</label><br />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.age, new { htmlAttributes = new { @class = "form-control", @placeholder = "Age", @required = true } })
+                @Html.ValidationMessageFor(model => model.age, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Login", "Login")
+</div>

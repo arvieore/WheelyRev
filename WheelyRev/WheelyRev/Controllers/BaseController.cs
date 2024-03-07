@@ -13,10 +13,12 @@ namespace WheelyRev.Controllers
         // GET: Base
         public WheelyRevEntities _db;  //Connection
         public BaseRepository<Users> _table;   //Users table
+        public BaseRepository<UserRoles> _tableUR; //User Role table
         public BaseController()
         {
             _db = new WheelyRevEntities();
             _table = new BaseRepository<Users>();
+            _tableUR = new BaseRepository<UserRoles>();
         }
     }
 }

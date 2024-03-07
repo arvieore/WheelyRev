@@ -65,6 +65,9 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="sp_DefaultRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="WheelyRevModelStoreContainer">
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />

@@ -12,6 +12,8 @@ namespace WheelyRev.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WheelyRevEntities : DbContext
     {
@@ -29,5 +31,14 @@ namespace WheelyRev.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<vw_UserRoles> vw_UserRoles { get; set; }
+    
+        public virtual int sp_DefaultRole(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DefaultRole", userIdParameter);
+        }
     }
 }
