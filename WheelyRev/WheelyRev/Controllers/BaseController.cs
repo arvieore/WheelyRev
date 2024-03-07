@@ -11,8 +11,8 @@ namespace WheelyRev.Controllers
     public class BaseController : Controller
     {
         // GET: Base
-        private WheelyRevEntities _db;  //Connection
-        private BaseRepository<Users> _table;   //Users table
+        public WheelyRevEntities _db;  //Connection
+        public BaseRepository<Users> _table;   //Users table
         public BaseController()
         {
             _db = new WheelyRevEntities();

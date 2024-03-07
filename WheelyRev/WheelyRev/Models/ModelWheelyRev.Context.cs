@@ -27,5 +27,7 @@ namespace WheelyRev.Models
     
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UserRoles> UserRoles { get; set; }
+        public virtual DbSet<vw_UserRoles> vw_UserRoles { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\acer\OneDrive\Desktop\Web Application\Project WheelyRev\WheelyRev\WheelyRev\Models\ModelWheelyRev.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\acer\OneDrive\Desktop\Web Application\WheelyRev\WheelyRev\WheelyRev\Models\ModelWheelyRev.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

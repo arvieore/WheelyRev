@@ -16,6 +16,11 @@ namespace WheelyRev.Repository
         {
             return _table.Find(id);
         }
+        public BaseRepository()
+        {
+            _db = new WheelyRevEntities();
+            _table = _db.Set<T>();
+        }
 
         public List<T> GetAll()
         {

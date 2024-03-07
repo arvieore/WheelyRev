@@ -14,6 +14,12 @@ namespace WheelyRev.Models
     
     public partial class Users
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Users()
+        {
+            this.UserRoles = new HashSet<UserRoles>();
+        }
+    
         public int userId { get; set; }
         public string username { get; set; }
         public string password { get; set; }
@@ -21,5 +27,8 @@ namespace WheelyRev.Models
         public string lastname { get; set; }
         public string email { get; set; }
         public Nullable<int> age { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserRoles> UserRoles { get; set; }
     }
 }

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WheelyRev.Models.Users>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+@if (!String.IsNullOrEmpty(TempData["msg"] as String))
+{
+    <div class="alert alert-success">@TempData["msg"] </div>
+}
+<table class="table">
+    <tr>
+        <th>Seq #</th>
+        <th>
+            Username
+        </th>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <th>
+                Actions
+            </th>
+        }
+    </tr>
+    @{ int i = 1;}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@i</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.userId }) |
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.userId })
+                    <span>|</span>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.userId })
+                }
+            </td>
+        </tr>
+        i++;
+    }
+
+</table>

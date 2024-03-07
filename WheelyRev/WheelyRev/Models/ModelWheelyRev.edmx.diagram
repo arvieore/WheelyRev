@@ -7,6 +7,10 @@
       <Diagram DiagramId="6cde5358509f4a90b7a65b2818e316a0" Name="Diagram1">
         <EntityTypeShape EntityType="WheelyRevModel.Roles" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WheelyRevModel.Users" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WheelyRevModel.UserRoles" Width="1.5" PointX="5.375" PointY="1" />
+        <EntityTypeShape EntityType="WheelyRevModel.vw_UserRoles" Width="1.5" PointX="8.125" PointY="1.375" />
+        <AssociationConnector Association="WheelyRevModel.FK_UserRoles_Roles" />
+        <AssociationConnector Association="WheelyRevModel.FK_UserRoles_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
