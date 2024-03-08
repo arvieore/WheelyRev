@@ -11,6 +11,8 @@
         <EntityTypeShape EntityType="WheelyRevModel.vw_UserRoles" Width="1.5" PointX="8.125" PointY="1.375" />
         <AssociationConnector Association="WheelyRevModel.FK_UserRoles_Roles" />
         <AssociationConnector Association="WheelyRevModel.FK_UserRoles_Users" />
+        <EntityTypeShape EntityType="WheelyRevModel.Shops" Width="1.5" PointX="5" PointY="4" />
+        <AssociationConnector Association="WheelyRevModel.FK_Shops_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

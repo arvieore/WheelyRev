@@ -34,6 +34,7 @@ namespace WheelyRev.Controllers
             {
                 //if true
                 FormsAuthentication.SetAuthCookie(u.username, false); //Set Cookie
+                Session["UserId"] = user.userId; //Store the userId to Session para magamit nato sa lain lain nga Action
                 return RedirectToAction("Index");
             }
             //else if ang user wala nag exist or dli same og value
@@ -59,7 +60,7 @@ namespace WheelyRev.Controllers
             TempData["msg"] = $"Register successfully!";
             return View();
         }
-        public void setDefaultRole(int id)
+        private void setDefaultRole(int id)
         {
             UserRoles Default_Role = new UserRoles
             {
@@ -67,6 +68,30 @@ namespace WheelyRev.Controllers
                 userId = id
             };
             _tableUR.Create(Default_Role);
+            Session["UserRole_ID"] = Default_Role.UserRoles_ID;
+        }
+        [AllowAnonymous]
+        public ActionResult AddShop()
+        {
+            return View();
+        }
+        [Authorize(Roles = "Customer")]
+        [HttpPost]
+        public ActionResult AddShop(Shops s)
+        {
+            int userId = (int)Session["UserId"]; //Retrieve the session nga gikan sa Login Action
+            s.userId = userId;
+
+            setShopOwner();
+            _tableShop.Create(s);
+            
+            TempData["msg"] = $"Register successfully!";
+            return View();
+        }
+        private void setShopOwner()
+        {
+            int UserRoles_ID = (int)Session["UserRole_ID"];
+            _db.sp_setShopOwner(UserRoles_ID); //Stored procedure is the key, the best gyud !
         }
     }
 }

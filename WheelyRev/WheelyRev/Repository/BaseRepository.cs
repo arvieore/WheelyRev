@@ -30,6 +30,7 @@ namespace WheelyRev.Repository
         {
             try
             {
+
                 _table.Add(t);
                 _db.SaveChanges();
                 return ErrorCode.Success;
@@ -66,6 +67,11 @@ namespace WheelyRev.Repository
             {
                 return ErrorCode.Error;
             }
+        }
+
+        internal object GetByUserId(int userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

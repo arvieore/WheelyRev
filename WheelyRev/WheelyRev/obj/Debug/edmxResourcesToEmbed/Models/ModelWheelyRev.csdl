@@ -20,6 +20,7 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="age" Type="Int32" />
     <NavigationProperty Name="UserRoles" Relationship="WheelyRevModel.FK_UserRoles_Users" FromRole="Users" ToRole="UserRoles" />
+    <NavigationProperty Name="Shops" Relationship="WheelyRevModel.FK_Shops_Users" FromRole="Users" ToRole="Shops" />
   </EntityType>
   <EntityContainer Name="WheelyRevEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Roles" EntityType="Self.Roles" />
@@ -36,6 +37,22 @@
     </AssociationSet>
     <FunctionImport Name="sp_DefaultRole">
       <Parameter Name="userId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Shops" EntityType="WheelyRevModel.Shops" />
+    <AssociationSet Name="FK_Shops_Users" Association="WheelyRevModel.FK_Shops_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+    <FunctionImport Name="sp_UpdateRole">
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="roleId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_UpdateShop">
+      <Parameter Name="userId" Mode="In" Type="Int32" />
+      <Parameter Name="roleId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_setShopOwner">
+      <Parameter Name="userRoles_ID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="UserRoles">
@@ -80,6 +97,29 @@
         <PropertyRef Name="userId" />
       </Principal>
       <Dependent Role="UserRoles">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="shopId" />
+    </Key>
+    <Property Name="shopId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="shopName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userId" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="WheelyRevModel.FK_Shops_Users" FromRole="Shops" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Shops_Users">
+    <End Type="WheelyRevModel.Users" Role="Users" Multiplicity="0..1" />
+    <End Type="WheelyRevModel.Shops" Role="Shops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="Shops">
         <PropertyRef Name="userId" />
       </Dependent>
     </ReferentialConstraint>

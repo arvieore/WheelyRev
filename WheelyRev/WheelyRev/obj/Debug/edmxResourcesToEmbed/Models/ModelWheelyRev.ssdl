@@ -7,6 +7,16 @@
     <Property Name="roleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="roleName" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="shopId" />
+    </Key>
+    <Property Name="shopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="shopName" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="userId" Type="int" />
+  </EntityType>
   <EntityType Name="UserRoles">
     <Key>
       <PropertyRef Name="UserRoles_ID" />
@@ -41,15 +51,15 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
     <Property Name="userId" Type="int" Nullable="false" />
     <Property Name="username" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <Association Name="FK_UserRoles_Roles">
-    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+  <Association Name="FK_Shops_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Roles">
-        <PropertyRef Name="roleId" />
+      <Principal Role="Users">
+        <PropertyRef Name="userId" />
       </Principal>
-      <Dependent Role="UserRoles">
-        <PropertyRef Name="roleId" />
+      <Dependent Role="Shops">
+        <PropertyRef Name="userId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -68,8 +78,12 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
   <Function Name="sp_DefaultRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userId" Type="int" Mode="In" />
   </Function>
+  <Function Name="sp_setShopOwner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userRoles_ID" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="WheelyRevModelStoreContainer">
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vw_UserRoles" EntityType="Self.vw_UserRoles" store:Type="Views" store:Schema="dbo">
@@ -81,9 +95,9 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
     [vw_UserRoles].[username] AS [username]
     FROM [dbo].[vw_UserRoles] AS [vw_UserRoles]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
-      <End Role="Roles" EntitySet="Roles" />
-      <End Role="UserRoles" EntitySet="UserRoles" />
+    <AssociationSet Name="FK_Shops_Users" Association="Self.FK_Shops_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Shops" EntitySet="Shops" />
     </AssociationSet>
     <AssociationSet Name="FK_UserRoles_Users" Association="Self.FK_UserRoles_Users">
       <End Role="Users" EntitySet="Users" />

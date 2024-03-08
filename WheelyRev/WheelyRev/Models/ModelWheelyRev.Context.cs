@@ -31,6 +31,7 @@ namespace WheelyRev.Models
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<vw_UserRoles> vw_UserRoles { get; set; }
+        public virtual DbSet<Shops> Shops { get; set; }
     
         public virtual int sp_DefaultRole(Nullable<int> userId)
         {
@@ -39,6 +40,41 @@ namespace WheelyRev.Models
                 new ObjectParameter("userId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DefaultRole", userIdParameter);
+        }
+    
+        public virtual int sp_UpdateRole(Nullable<int> userId, Nullable<int> roleId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdateRole", userIdParameter, roleIdParameter);
+        }
+    
+        public virtual int sp_UpdateShop(Nullable<int> userId, Nullable<int> roleId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            var roleIdParameter = roleId.HasValue ?
+                new ObjectParameter("roleId", roleId) :
+                new ObjectParameter("roleId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdateShop", userIdParameter, roleIdParameter);
+        }
+    
+        public virtual int sp_setShopOwner(Nullable<int> userRoles_ID)
+        {
+            var userRoles_IDParameter = userRoles_ID.HasValue ?
+                new ObjectParameter("userRoles_ID", userRoles_ID) :
+                new ObjectParameter("userRoles_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_setShopOwner", userRoles_IDParameter);
         }
     }
 }

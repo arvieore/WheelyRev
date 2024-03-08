@@ -18,6 +18,7 @@ namespace WheelyRev.Models
         public Users()
         {
             this.UserRoles = new HashSet<UserRoles>();
+            this.Shops = new HashSet<Shops>();
         }
     
         public int userId { get; set; }
@@ -30,5 +31,7 @@ namespace WheelyRev.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserRoles> UserRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shops> Shops { get; set; }
     }
 }
