@@ -32,6 +32,7 @@ namespace WheelyRev.Models
         public virtual DbSet<UserRoles> UserRoles { get; set; }
         public virtual DbSet<vw_UserRoles> vw_UserRoles { get; set; }
         public virtual DbSet<Shops> Shops { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
     
         public virtual int sp_DefaultRole(Nullable<int> userId)
         {

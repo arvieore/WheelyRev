@@ -54,6 +54,11 @@
     <FunctionImport Name="sp_setShopOwner">
       <Parameter Name="userRoles_ID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="Products" EntityType="WheelyRevModel.Products" />
+    <AssociationSet Name="FK_Products_Shops" Association="WheelyRevModel.FK_Products_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="UserRoles">
     <Key>
@@ -111,6 +116,7 @@
     <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="userId" Type="Int32" />
     <NavigationProperty Name="Users" Relationship="WheelyRevModel.FK_Shops_Users" FromRole="Shops" ToRole="Users" />
+    <NavigationProperty Name="Products" Relationship="WheelyRevModel.FK_Products_Shops" FromRole="Shops" ToRole="Products" />
   </EntityType>
   <Association Name="FK_Shops_Users">
     <End Type="WheelyRevModel.Users" Role="Users" Multiplicity="0..1" />
@@ -121,6 +127,31 @@
       </Principal>
       <Dependent Role="Shops">
         <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="productDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="productPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="productQty" Type="Int32" Nullable="false" />
+    <Property Name="shopId" Type="Int32" />
+    <NavigationProperty Name="Shops" Relationship="WheelyRevModel.FK_Products_Shops" FromRole="Products" ToRole="Shops" />
+    <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Products_Shops">
+    <End Type="WheelyRevModel.Shops" Role="Shops" Multiplicity="0..1" />
+    <End Type="WheelyRevModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="shopId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="shopId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

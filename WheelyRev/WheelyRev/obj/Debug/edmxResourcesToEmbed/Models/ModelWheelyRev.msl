@@ -55,5 +55,18 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="sp_setShopOwner" FunctionName="WheelyRevModel.Store.sp_setShopOwner" />
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="WheelyRevModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="productName" ColumnName="productName" />
+          <ScalarProperty Name="shopId" ColumnName="shopId" />
+          <ScalarProperty Name="productQty" ColumnName="productQty" />
+          <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+          <ScalarProperty Name="productDescription" ColumnName="productDescription" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

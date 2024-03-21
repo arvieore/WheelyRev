@@ -1,54 +1,42 @@
-﻿@model IEnumerable<WheelyRev.Models.Users>
+﻿@model IEnumerable<WheelyRev.Models.Products>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<h2>Index</h2>
-
-@if (User.Identity.IsAuthenticated)
-{
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-}
-
-@if (!String.IsNullOrEmpty(TempData["msg"] as String))
-{
-    <div class="alert alert-success">@TempData["msg"] </div>
-}
-<table class="table">
-    <tr>
-        <th>Seq #</th>
-        <th>
-            Username
-        </th>
-        @if (User.Identity.IsAuthenticated)
-        {
-            <th>
-                Actions
-            </th>
-        }
-    </tr>
-    @{ int i = 1;}
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@i</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.username)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.userId }) |
-                @if (User.IsInRole("Admin"))
-                {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.userId })
-                    <span>|</span>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.userId })
-                }
-            </td>
-        </tr>
-        i++;
-    }
-
-</table>
+<div class="fashion_section">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <h1 class="fashion_taital">Products</h1>
+                <div class="fashion_section_2">
+                    <div class="row">
+                        @foreach (var image in Model)
+                        {
+                            <div class="col-lg-4 col-sm-4">
+                                <div class="product">
+                                    <!-- Added 'product' class -->
+                                    <div class="box_main">
+                                        <div class="tshirt_img">
+                                            <img src="~/Images/@image.ImagePath">
+                                            @* Pwede ta mag butang og Price anhi para makaybaw ang user pila ang kani nga product *@
+                                            <br />
+                                            <div class="product-name"><p>@image.productName</p></div><br />
+                                            <div class="product-description"><p>@image.productDescription</p></div>
+                                            <div class="product-price"><p>@image.productPrice</p></div>
+                                        </div>
+                                        <div class="btn_main">
+                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
+                                            <div class="seemore_bt"><a href="#">See More</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

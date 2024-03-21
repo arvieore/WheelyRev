@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WheelyRevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="productName" Type="nvarchar" MaxLength="50" />
+          <Property Name="productDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="productPrice" Type="money" Nullable="false" />
+          <Property Name="productQty" Type="int" Nullable="false" />
+          <Property Name="shopId" Type="int" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="roleId" />
@@ -56,6 +68,18 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
           <Property Name="userId" Type="int" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_Products_Shops">
+          <End Role="Shops" Type="Self.Shops" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="shopId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Shops_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
           <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
@@ -87,6 +111,7 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
           <Parameter Name="userRoles_ID" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="WheelyRevModelStoreContainer">
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
@@ -100,6 +125,10 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
     [vw_UserRoles].[username] AS [username]
     FROM [dbo].[vw_UserRoles] AS [vw_UserRoles]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Products_Shops" Association="Self.FK_Products_Shops">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_Shops_Users" Association="Self.FK_Shops_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Shops" EntitySet="Shops" />
@@ -165,8 +194,13 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
             <Parameter Name="roleId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_setShopOwner">
-            <Parameter Name="userRoles_ID" Mode="In" Type="Int32" />
+          <Parameter Name="userRoles_ID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Products" EntityType="WheelyRevModel.Products" />
+          <AssociationSet Name="FK_Products_Shops" Association="WheelyRevModel.FK_Products_Shops">
+            <End Role="Shops" EntitySet="Shops" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserRoles">
           <Key>
@@ -224,6 +258,7 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
           <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="userId" Type="Int32" />
           <NavigationProperty Name="Users" Relationship="WheelyRevModel.FK_Shops_Users" FromRole="Shops" ToRole="Users" />
+          <NavigationProperty Name="Products" Relationship="WheelyRevModel.FK_Products_Shops" FromRole="Shops" ToRole="Products" />
         </EntityType>
         <Association Name="FK_Shops_Users">
           <End Type="WheelyRevModel.Users" Role="Users" Multiplicity="0..1" />
@@ -234,6 +269,31 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
             </Principal>
             <Dependent Role="Shops">
               <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="productDescription" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="productPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="productQty" Type="Int32" Nullable="false" />
+          <Property Name="shopId" Type="Int32" />
+          <NavigationProperty Name="Shops" Relationship="WheelyRevModel.FK_Products_Shops" FromRole="Products" ToRole="Shops" />
+          <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Products_Shops">
+          <End Type="WheelyRevModel.Shops" Role="Shops" Multiplicity="0..1" />
+          <End Type="WheelyRevModel.Products" Role="Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shops">
+              <PropertyRef Name="shopId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="shopId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -297,6 +357,19 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_setShopOwner" FunctionName="WheelyRevModel.Store.sp_setShopOwner" />
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="WheelyRevModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="shopId" ColumnName="shopId" />
+                <ScalarProperty Name="productQty" ColumnName="productQty" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+                <ScalarProperty Name="productDescription" ColumnName="productDescription" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

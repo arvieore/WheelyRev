@@ -1,5 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WheelyRevModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="productName" Type="nvarchar" MaxLength="50" />
+    <Property Name="productDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="productPrice" Type="money" Nullable="false" />
+    <Property Name="productQty" Type="int" Nullable="false" />
+    <Property Name="shopId" Type="int" />
+  </EntityType>
   <EntityType Name="Roles">
     <Key>
       <PropertyRef Name="roleId" />
@@ -51,6 +63,18 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
     <Property Name="userId" Type="int" Nullable="false" />
     <Property Name="username" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_Products_Shops">
+    <End Role="Shops" Type="Self.Shops" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="shopId" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="shopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Shops_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
@@ -82,6 +106,7 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
     <Parameter Name="userRoles_ID" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="WheelyRevModelStoreContainer">
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Shops" EntityType="Self.Shops" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
@@ -95,6 +120,10 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
     [vw_UserRoles].[username] AS [username]
     FROM [dbo].[vw_UserRoles] AS [vw_UserRoles]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_Products_Shops" Association="Self.FK_Products_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
     <AssociationSet Name="FK_Shops_Users" Association="Self.FK_Shops_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Shops" EntitySet="Shops" />

@@ -35,6 +35,32 @@ section,
 summary {
   display: block;
 }
+.containerT{
+    margin-top:25%;
+}
+
+.containerL {
+    margin: 0 auto;
+    margin-top: 20%;
+    margin-left: 12%;
+    width: 340px; /* Set the width of the container */
+    height: 400px; /* Set the height of the container */
+    Background-color: #f0f0f0; /* Set background color */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Add rounded corners */
+    padding: 20px; /* Add padding inside the container */
+    box-sizing: border-box; /* Include padding and border in the total width and height */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.containerL .form-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.containerL h2{
+    text-align: center;
+}
 
 audio,
 canvas,

@@ -14,6 +14,12 @@ namespace WheelyRev.Models
     
     public partial class Shops
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Shops()
+        {
+            this.Products = new HashSet<Products>();
+        }
+    
         public int shopId { get; set; }
         public string shopName { get; set; }
         public string shopAddress { get; set; }
@@ -21,5 +27,7 @@ namespace WheelyRev.Models
         public Nullable<int> userId { get; set; }
     
         public virtual Users Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Products> Products { get; set; }
     }
 }

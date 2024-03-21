@@ -1,0 +1,39 @@
+﻿@model List<WheelyRev.Models.Products>
+
+@{
+    ViewBag.Title = "ViewProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>For sale</h2>
+
+<div class="container1">
+    <div class="products-container1">
+        @foreach (var product in Model)
+            {
+            <div class="product" data-target="p-@product.productID" onclick="showDescription('@product.productID')">
+                <img src="~/Images/@product.ImagePath" alt="">
+                <h3>@product.productName</h3>
+                <div class="price">@product.productPrice</div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="products-preview">
+    @foreach (var product in Model)
+    {
+        <div class="preview" id="preview-@product.productID">
+            <i class="fas fa-times" onclick="hideDescription('@product.productID')">X</i>
+            <img src="~/Images/@product.ImagePath" alt="">
+            <h3>@product.productName</h3>
+
+            <p>@product.productDescription</p>
+            <div class="price">@product.productPrice</div>
+            <div class="buttons">
+                <a href="#" class="buy">buy now</a>
+                <a href="#" class="cart">add to cart</a>
+            </div>
+        </div>
+    }
+</div>

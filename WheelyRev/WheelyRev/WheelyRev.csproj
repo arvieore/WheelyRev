@@ -129,6 +129,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Products.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -157,7 +158,52 @@
     <Content Include="scripts\jquery.validate.min.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="scripts\jsscript.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="Templates\css\animate.min.css" />
+    <Content Include="Templates\css\bootstrap-grid.css" />
+    <Content Include="Templates\css\bootstrap-grid.min.css" />
+    <Content Include="Templates\css\bootstrap-reboot.css" />
+    <Content Include="Templates\css\bootstrap-reboot.min.css" />
+    <Content Include="Templates\css\bootstrap.css" />
+    <Content Include="Templates\css\bootstrap.min.css" />
+    <Content Include="Templates\css\default-skin.css" />
+    <Content Include="Templates\css\font-awesome.min.css" />
+    <Content Include="Templates\css\icomoon.css" />
+    <Content Include="Templates\css\jquery-ui.css" />
+    <Content Include="Templates\css\jquery.fancybox.min.css" />
+    <Content Include="Templates\css\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Templates\css\meanmenu.css" />
+    <Content Include="Templates\css\nice-select.css" />
+    <Content Include="Templates\css\normalize.css" />
+    <Content Include="Templates\css\owl.carousel.min.css" />
+    <Content Include="Templates\css\responsive.css" />
+    <Content Include="Templates\css\slick.css" />
+    <Content Include="Templates\css\style.css" />
+    <Content Include="Templates\images\call-icon.png" />
+    <Content Include="Templates\images\footer-logo.png" />
+    <Content Include="Templates\images\garage.jpg" />
+    <Content Include="Templates\images\mail-icon.png" />
+    <Content Include="Templates\images\map-icon.png" />
+    <Content Include="Templates\images\search-icon.png" />
+    <Content Include="Templates\images\toggle-icon.png" />
+    <Content Include="Templates\images\user-icon.png" />
+    <Content Include="Templates\images\WheelyRev-logo.png" />
+    <Content Include="Templates\js\bootstrap.bundle.js" />
+    <Content Include="Templates\js\bootstrap.bundle.min.js" />
+    <Content Include="Templates\js\bootstrap.js" />
+    <Content Include="Templates\js\bootstrap.min.js" />
+    <Content Include="Templates\js\custom.js" />
+    <Content Include="Templates\js\jquery-3.0.0.min.js" />
+    <Content Include="Templates\js\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Templates\js\jquery.min.js" />
+    <Content Include="Templates\js\jquery.validate.js" />
+    <Content Include="Templates\js\modernizer.js" />
+    <Content Include="Templates\js\plugin.js" />
+    <Content Include="Templates\js\popper.min.js" />
+    <Content Include="Templates\js\slider-setting.js" />
+    <Content Include="Ttemplates\jsscript.js" />
+    <Content Include="Ttemplates\Products.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +228,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelWheelyRev.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Products.cs">
+      <DependentUpon>ModelWheelyRev.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Roles.cs">
       <DependentUpon>ModelWheelyRev.tt</DependentUpon>
@@ -219,9 +268,25 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\AddShop.cshtml" />
+    <Content Include="Views\Home\MyShop.cshtml" />
+    <Content Include="Views\Home\ViewProducts.cshtml" />
+    <Content Include="Views\Shared\_HomeLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Templates\js\.DS_Store" />
+    <Content Include="Templates\js\bootstrap.bundle.js.map" />
+    <Content Include="Templates\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Templates\js\bootstrap.js.map" />
+    <Content Include="Templates\js\bootstrap.min.js.map" />
+    <Content Include="Templates\fonts\Berlin Sans FB Bold.ttf" />
+    <Content Include="Templates\css\.DS_Store" />
+    <Content Include="Templates\css\bootstrap-grid.css.map" />
+    <Content Include="Templates\css\bootstrap-grid.min.css.map" />
+    <Content Include="Templates\css\bootstrap-reboot.css.map" />
+    <Content Include="Templates\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Templates\css\bootstrap.css.map" />
+    <Content Include="Templates\css\bootstrap.min.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
