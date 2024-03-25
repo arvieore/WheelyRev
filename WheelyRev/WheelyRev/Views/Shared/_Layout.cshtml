@@ -11,8 +11,69 @@
     @*...........................................................*@
     <link href="~/Content/Products.css" rel="stylesheet" />
     <script src="~/Scripts/jsscript.js"></script>
+
+    @*<link href="~/Content/styleNav.css" rel="stylesheet" />
+    <link rel="stylesheet" href="Templates/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="Templates/css/bootstrap.min.css">
+    <link rel="icon" href="Templates/images/fevicon.png" type="image/gif" />*@
+
 </head>
 <body>
+    @*@*<div class="containerN">
+        <div class="header_section_top">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="custom_menu">
+                        <ul>
+                            @if (User.Identity.IsAuthenticated)//Check if the user is login or not
+                            {
+                                if (User.IsInRole("Admin"))
+                                {
+                                    //Content para sa admin ra .....
+                                }
+                                else if (User.IsInRole("Customer"))
+                                {
+                                    //Content para sa Customer ra......
+                                }
+                                else
+                                {
+                                    //Content para sa Shop owner
+                                }
+                                <li><a href="~/Home/ViewProducts">Products</a></li>
+                                <li><a href="~/Home/Logout">Logout</a></li>
+                                //Drop down for the owners shop/switch account to shop owner
+                                <li class="dropdown">
+                                    @*<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        @User.Identity.Name
+                                        <span class="caret"></span>
+                                    </a>*@
+                                    @*<ul class="dropdown-menu">
+                                        @if (User.IsInRole("Store owner"))
+                                        {
+                                            @*<li><a href="~/Home/MyShop">My Shop</a></li>*@
+                                        }
+                                        @*@if (!User.IsInRole("Store owner"))
+                                        {
+                                            <li><a href="~/Home/AddShop">Add shop</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                                //-----------------------------------------------------------
+                            }
+                            else//If the user is not login
+                            {
+                                <li>
+                                    @*<a href="~/Home/Login">Login</a>*@
+                                    @*<a href="#">About us</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -63,7 +124,8 @@
                     else//If the user is not login
                     {
                         <li>
-                            <a href="~/Home/Login">Login</a>
+                            @*<a href="~/Home/Login">Login</a>*@
+                            <a href="#">About us</a>
                         </li>
                     }
                 </ul>
@@ -73,11 +135,11 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
+        @*<hr />
         <footer>
-            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             <p>WheelyRev </p>
-        </footer>
+        </footer>*@
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>

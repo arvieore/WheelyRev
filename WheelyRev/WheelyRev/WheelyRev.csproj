@@ -131,6 +131,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Products.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\styleNav.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Models\ModelWheelyRev.Context.tt">
@@ -188,6 +189,8 @@
     <Content Include="Templates\images\search-icon.png" />
     <Content Include="Templates\images\toggle-icon.png" />
     <Content Include="Templates\images\user-icon.png" />
+    <Content Include="Templates\images\WheelyRev-logo-login.png" />
+    <Content Include="Templates\images\WheelyRev-logo-White.png" />
     <Content Include="Templates\images\WheelyRev-logo.png" />
     <Content Include="Templates\js\bootstrap.bundle.js" />
     <Content Include="Templates\js\bootstrap.bundle.min.js" />
@@ -209,8 +212,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Contacts\IBaseRepository.cs" />
+    <Compile Include="Controllers\AddShopController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -269,8 +274,6 @@
     <Content Include="scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
-    <Content Include="Views\Home\AddShop.cshtml" />
-    <Content Include="Views\Home\MyShop.cshtml" />
     <Content Include="Views\Home\ViewProducts.cshtml" />
     <Content Include="Views\Shared\_HomeLayout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -287,6 +290,8 @@
     <Content Include="Templates\css\bootstrap-reboot.min.css.map" />
     <Content Include="Templates\css\bootstrap.css.map" />
     <Content Include="Templates\css\bootstrap.min.css.map" />
+    <Content Include="Views\AddShop\AddShop.cshtml" />
+    <Content Include="Views\MyShop\MyShop.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

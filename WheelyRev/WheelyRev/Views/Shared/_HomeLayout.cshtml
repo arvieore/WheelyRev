@@ -64,7 +64,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="logo"><a href="#"><img src="~/Templates/images/WheelyRev-logo.png"></a></div>
+                        <div class="logo"><a href="#"><img src="~/Templates/images/WheelyRev-logo-White.png"></a></div>
                         @*<h1 class="logo" style="color:white">WheelyRev</h1>*@
                     </div>
                 </div>
@@ -80,11 +80,11 @@
                         <a href="~/Home">Home</a>
                         @if (User.IsInRole("Store owner"))
                         {
-                            <a href="~/Home/MyShop">My Shop</a>
+                            <a href="~/MyShop/MyShop">My Shop</a>
                         }
                         @if (!User.IsInRole("Store owner"))
                         {
-                            <a href="~/Home/AddShop">Add shop</a>
+                            <a href="~/AddShop/AddShop">Add shop</a>
                         }
                         <a href="~/Home/Logout">Logout</a>
                     </div>
