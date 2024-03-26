@@ -58,6 +58,7 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="WheelyRevModel.Products">
         <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="productCategory" ColumnName="productCategory" />
           <ScalarProperty Name="productName" ColumnName="productName" />
           <ScalarProperty Name="shopId" ColumnName="shopId" />
           <ScalarProperty Name="productQty" ColumnName="productQty" />

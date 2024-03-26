@@ -26,7 +26,7 @@
                         @*<label>Username</label><br />*@
                         <div class="form-group">
                             @*<div class="col-md-10">*@
-                            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", @placeholder = "Username", @required = true } })
+                            @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control username", @placeholder = "Username", @required = true, @style = "width: 280px" } })
                             @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                             @*</div>*@
                         </div>
@@ -34,13 +34,13 @@
                         @*<label>Password</label><br />*@
                         <div class="form-group">
                             @*<div class="col-md-10">*@
-                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @required = true, @type = "password" } })
+                            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control password", @placeholder = "Password", @required = true, @type = "password", @style = "width: 280px" } })
                             @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                             @*</div>*@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" value="Login" class="btn btn-primary btn-lg btn-block" />
+                            <input type="submit" value="Login" class="btn btn-primary btn-lg btn-block" style="width: 280px" />
                             <a style="margin-top: 10px" href="#">Forgot password?</a>
                         </div>
                         <hr style="margin-top: 10px; margin-bottom: 20px; border: none; border-top: 2px solid #ccc;">
@@ -49,6 +49,12 @@
                 <div>
                     @Html.ActionLink("Sign-up", "Register", null, new { @class = "btn btn-success btn-lg btn-block"})
                 </div>
+                @if (ViewData["ErrorMessage"] != null)
+                {
+                    <div class="text-danger" style="margin-top: 5px; margin-bottom: 5px">
+                        @ViewData["ErrorMessage"]
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -58,3 +64,19 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Check if there's an error message, if so, clear the username textbox and add red border
+        var errorMessage = '@ViewData["ErrorMessage"]';
+        if (errorMessage !== '') {
+            $(".username").val('');
+            $(".username").css("border-color", "red");
+
+            $(".password").val('');
+            $(".password").css("border-color", "red");
+        }
+    });
+</script>

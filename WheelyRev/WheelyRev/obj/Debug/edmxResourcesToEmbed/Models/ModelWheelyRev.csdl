@@ -142,6 +142,7 @@
     <Property Name="shopId" Type="Int32" />
     <NavigationProperty Name="Shops" Relationship="WheelyRevModel.FK_Products_Shops" FromRole="Products" ToRole="Shops" />
     <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="productCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Products_Shops">
     <End Type="WheelyRevModel.Shops" Role="Shops" Multiplicity="0..1" />

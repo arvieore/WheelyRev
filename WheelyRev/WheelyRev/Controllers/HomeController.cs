@@ -39,7 +39,8 @@ namespace WheelyRev.Controllers
                 return RedirectToAction("Index");
             }
             //else if ang user wala nag exist or dli same og value
-            ModelState.AddModelError("", "User is not exist or incorrect Password.");
+
+            ViewData["ErrorMessage"] = "Incorrect username or password.";
             return View(u);
         }
         public ActionResult Logout()

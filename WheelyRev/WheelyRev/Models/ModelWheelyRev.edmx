@@ -15,6 +15,7 @@
           <Property Name="productDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="productPrice" Type="money" Nullable="false" />
           <Property Name="productQty" Type="int" Nullable="false" />
+          <Property Name="productCategory" Type="nvarchar" MaxLength="50" />
           <Property Name="shopId" Type="int" />
         </EntityType>
         <EntityType Name="Roles">
@@ -284,6 +285,7 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
           <Property Name="shopId" Type="Int32" />
           <NavigationProperty Name="Shops" Relationship="WheelyRevModel.FK_Products_Shops" FromRole="Products" ToRole="Shops" />
           <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="productCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Products_Shops">
           <End Type="WheelyRevModel.Shops" Role="Shops" Multiplicity="0..1" />
@@ -360,6 +362,7 @@ warning 6002: The table/view 'WheelyRev.dbo.vw_UserRoles' does not have a primar
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="WheelyRevModel.Products">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="productCategory" ColumnName="productCategory" />
                 <ScalarProperty Name="productName" ColumnName="productName" />
                 <ScalarProperty Name="shopId" ColumnName="shopId" />
                 <ScalarProperty Name="productQty" ColumnName="productQty" />

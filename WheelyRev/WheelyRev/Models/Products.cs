@@ -21,6 +21,7 @@ namespace WheelyRev.Models
         public int productQty { get; set; }
         public Nullable<int> shopId { get; set; }
         public string productName { get; set; }
+        public string productCategory { get; set; }
     
         public virtual Shops Shops { get; set; }
     }
