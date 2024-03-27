@@ -130,6 +130,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Products.css" />
+    <Content Include="Content\RegistrationCss.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\styleNav.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

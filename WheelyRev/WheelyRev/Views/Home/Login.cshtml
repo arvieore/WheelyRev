@@ -8,7 +8,6 @@
             <div class="text-center">
                 <div class="containerT">
                     <div class="WheelyLogin"><img src="~/Templates/images/WheelyRev-logo-login.png"></div>
-                    @*<h3>WheelyRev</h3>*@
                     <h4>Your one-stop shop for premium vehicle parts and services.</h4>
                 </div>
             </div>
@@ -16,27 +15,20 @@
 
         <div class="col-md-6">
             <div class="containerL">
-                @*<h2>Login</h2>*@
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @*<label>Username</label><br />*@
                         <div class="form-group">
-                            @*<div class="col-md-10">*@
                             @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control username", @placeholder = "Username", @required = true, @style = "width: 280px" } })
                             @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
-                            @*</div>*@
                         </div>
 
-                        @*<label>Password</label><br />*@
                         <div class="form-group">
-                            @*<div class="col-md-10">*@
                             @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control password", @placeholder = "Password", @required = true, @type = "password", @style = "width: 280px" } })
                             @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-                            @*</div>*@
                         </div>
 
                         <div class="form-group">

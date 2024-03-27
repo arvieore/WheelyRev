@@ -12,21 +12,26 @@
     <link href="~/Content/Products.css" rel="stylesheet" />
     <script src="~/Scripts/jsscript.js"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link href="~/Content/styleNav.css" rel="stylesheet" />
-    <link rel="stylesheet" href="Templates/css/responsive.css">
-    <link rel="stylesheet" type="text/css" href="Templates/css/bootstrap.min.css">
-    <link rel="icon" href="Templates/images/fevicon.png" type="image/gif" />
+    <link rel="stylesheet" type="text/css" href="~/Templates/css/style.css">
+    <link rel="stylesheet" href="~/Templates/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/Templates/css/bootstrap.min.css">
+    <link rel="icon" href="~/Templates/images/fevicon.png" type="image/gif" />
 
 </head>
 <body>
     <div class="container">
-        <div class="header_section_top">
+        <div class="header_section_top" style="background-color: #363838">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="custom_menu">
                         <ul>
                             <li>
-                                @Html.ActionLink("WheelyRev", "Index", "Home", new { area = "" })
+                                @*@Html.ActionLink("WheelyRev", "Index", "Home", new { area = "" })*@
+                                <a href="@Url.Action("Index", "Home")">WheelyRev</a>
                             </li>
                             @if (User.Identity.IsAuthenticated)//Check if the user is login or not
                             {
@@ -49,15 +54,15 @@
                                     <a href="#">
                                         @User.Identity.Name
                                     </a>
-                                        @if (User.IsInRole("Store owner"))
-                                        {
-                                            <li><a href="~/Home/MyShop">My Shop</a></li>
-                                        }
-                                        @if (!User.IsInRole("Store owner"))
-                                        {
-                                            <li><a href="~/Home/AddShop">Add shop</a></li>
-                                        }
-                                </li>
+                                    @if (User.IsInRole("Store owner"))
+                                    {
+                                    <li><a href="~/Home/MyShop">My Shop</a></li>
+                                    }
+                                    @if (!User.IsInRole("Store owner"))
+                                    {
+                                        <li><a href="~/Home/AddShop">Add shop</a></li>
+                                    }
+                                    </li>
                                 //-----------------------------------------------------------
                             }
                             else//If the user is not login
@@ -75,76 +80,55 @@
         </div>
     </div>
 
-    @* ----------------------------------------------------------------------------------------------------------- *@
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
+    @RenderBody()
+
+    <div class="footer_section layout_padding" style="margin-top: 7%">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("WheelyRev", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="footer_logo">
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="~/Templates/images/WheelyRev-logo-White.png" alt="WheelyRev Logo">
+                </a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @if (User.Identity.IsAuthenticated)//Check if the user is login or not
-                    {
-                        if (User.IsInRole("Admin"))
-                        {
-                            //Content para sa admin ra .....
-                        }
-                        else if (User.IsInRole("Customer"))
-                        {
-                            //Content para sa Customer ra......
-                        }
-                        else
-                        {
-                            //Content para sa Shop owner
-                        }
-                        <li><a href="~/Home/ViewProducts">Products</a></li>
-                        <li><a href="~/Home/Logout">Logout</a></li>
-                        //Drop down for the owners shop/switch account to shop owner
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                @User.Identity.Name
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">  
-                                @if (User.IsInRole("Store owner"))
-                                {
-                                    <li><a href="~/Home/MyShop">My Shop</a></li>
-                                }
-                                @if (!User.IsInRole("Store owner"))
-                                {
-                                    <li><a href="~/Home/AddShop">Add shop</a></li>
-                                }
-                            </ul>
-                        </li>
-                        //-----------------------------------------------------------
-                    }
-                    else//If the user is not login
-                    {
-                        <li>
-                            @*<a href="~/Home/Login">Login</a>*@
-                            @*<a href="#">About us</a>
-                        </li>
-                    }
+            <div class="input_bt">
+                <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
+                <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+            </div>
+            <div class="footer_menu">
+                <ul>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Shops</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">About us</a></li>
                 </ul>
             </div>
+            <div class="location_main">Help Line  Number : <a href="#">+1 1800 1200 1200</a></div>
         </div>
-    </div>*@
-
-    <div class="container body-content">
-        @RenderBody()
-        @*<hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            <p>WheelyRev </p>
-        </footer>*@
     </div>
+    <!-- footer section end -->
+    <!-- copyright section start -->
+    <div class="copyright_section">
+        <div class="container">
+            <p class="copyright_text">© 2020 All Rights Reserved. Design by <a href="https://html.design">Free html Templates</a></p>
+        </div>
+    </div>
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="Templates/js/jquery.min.js"></script>
+    <script src="Templates/js/popper.min.js"></script>
+    <script src="Templates/js/bootstrap.bundle.min.js"></script>
+    <script src="Templates/js/jquery-3.0.0.min.js"></script>
+    <script src="Templates/js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="Templates/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="Templates/js/custom.js"></script>
+    <script>
+         function openNav() {
+           document.getElementById("mySidenav").style.width = "250px";
+         }
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+         function closeNav() {
+           document.getElementById("mySidenav").style.width = "0";
+         }
+    </script>
 </body>
 </html>
